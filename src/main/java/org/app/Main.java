@@ -1,25 +1,44 @@
 package org.app;
 import org.flights.Flight;
 
+import java.util.Scanner;
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner inputUser = new Scanner(System.in);
 
         CreateNewFlight();
 
     }
 
-    public static Flight CreateNewFlight(){
-        // flightNumber, origin, destination,  departure,  totalSeatsOnFlight
-        System.out.println("Please, enter the flight information: ");
-        Flight newFlightDestiny = new Flight();
+    public static void CreateNewFlight() {
+        Scanner inputUser = new Scanner(System.in);
 
-        return newFlightDestiny;
+        System.out.println("Please, enter the flight information!");
+        System.out.println("Destiny of the flight: ");
+        String flightDestiny = inputUser.nextLine();
+
+        System.out.println("Origin of the flight: ");
+        String flightOrigin = inputUser.nextLine();
+
+        System.out.println("Date and time of flight departure (Ex: 25/11/2020 12:00): ");
+        String flightDapartureDateTime = inputUser.nextLine();
+
+        System.out.println("Number of the flight: ");
+        int flightNumber = inputUser.nextInt();
+
+        System.out.println("Total of seats on Airplane: ");
+        int flightSeats = inputUser.nextInt();
+
+        // flightNumber, origin, destination,  departure,  totalSeatsOnFlight.
+        Flight newFlightDestiny = new Flight(flightNumber, flightOrigin, flightDestiny, flightDapartureDateTime, flightSeats);
+
+        newFlightDestiny.getFlightNumber();
     }
+
+
 
 }

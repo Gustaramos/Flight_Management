@@ -9,15 +9,15 @@ public class Flight {
     private int flightNumber;
     private String origin;
     private String destination;
-    LocalDateTime departure;
+    String departure;
     private int totalSeatsOnFlight = 50;
-    int[] AvailableSeats;
+    private int availableSeats;
 
     public Flight() {
         this.flightNumber = 0;
         this.origin = "";
         this.destination = "";
-        //LocalDateTime departure = LocalDateTime.parse("");
+        String departure = "";
         this.totalSeatsOnFlight = 0;
     }
 
@@ -25,7 +25,7 @@ public class Flight {
         this.flightNumber = flightNumber;
         this.origin = origin;
         this.destination = destination;
-        //this.departure = LocalDateTime.parse(departure);
+        this.departure = departure;
         this.totalSeatsOnFlight = totalSeatsOnFlight;
     }
 
@@ -41,7 +41,7 @@ public class Flight {
         return this.destination;
     }
 
-    public LocalDateTime getDeparture() {
+    public String getDeparture() {
         return this.departure;
     }
 
@@ -49,8 +49,8 @@ public class Flight {
         return this.totalSeatsOnFlight;
     }
 
-    public int[] getAvailableSeats() {
-        return this.AvailableSeats;
+    public int getAvailableSeats() {
+        return this.availableSeats;
     }
 
 
