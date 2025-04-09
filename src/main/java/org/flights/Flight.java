@@ -1,10 +1,8 @@
 package org.flights;
 
-import java.lang.reflect.Array;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Flight {
+public class Flight{
     private int flightNumber;
     private String origin;
     private String destination;
@@ -13,7 +11,8 @@ public class Flight {
     private int availableSeats;
     private static ArrayList<Flight> listOfFlights = new ArrayList<Flight>();
 
-    public Flight() {
+
+    public Flight(){
         this.flightNumber = 0;
         this.origin = "";
         this.destination = "";
@@ -22,12 +21,13 @@ public class Flight {
 
     }
 
-    public Flight(int flightNumber, String origin, String destination, String departure, int totalSeatsOnFlight) {
+    public Flight(int flightNumber, String origin, String destination, String departure, int totalSeatsOnFlight){
         this.flightNumber = flightNumber;
         this.origin = origin;
         this.destination = destination;
         this.departure = departure;
         this.totalSeatsOnFlight = totalSeatsOnFlight;
+        this.availableSeats = totalSeatsOnFlight;
     }
 
     public int getFlightNumber() {
@@ -42,7 +42,7 @@ public class Flight {
         return this.destination;
     }
 
-    public String getDeparture() {
+    public String getDeparture(){
         return this.departure;
     }
 
@@ -50,27 +50,34 @@ public class Flight {
         return this.totalSeatsOnFlight;
     }
 
-    public int getAvaiableSeats() {
+    public int getAvaibleSeats(){
         return this.availableSeats;
     }
 
-    public void FlightsInfos(int numberOfFlight) {
-	System.out.println("Flight of number: " + getFlightNumber());
-	System.out.println("Origin: "+ getOrigin());
-	System.out.println("Destiny: " + getDestination());
+    public void flightsInfos(int numberOfFlight){
+	    System.out.println("Flight of number: " + getFlightNumber());
+	    System.out.println("Origin: "+ getOrigin());
+	    System.out.println("Destiny: " + getDestination());
         System.out.println("Departure: " + getDeparture());
         System.out.println("Total seats on Airplane: " + getTotalSeatsOnFlight());
-        System.out.println("Seats avaiable: " + getAvaiableSeats());
+        System.out.println("Seats avaiable: " + getAvaibleSeats());
     }
 
-    public void ListAllFlights() {
-	for(Flight flight : listOfFlights) {
-		System.out.println("Alright! Here are the flights registered by now: " + this.flightNumber);
-  	}
+    public ArrayList<Flight> getListOfFlights(){
+        return listOfFlights;
     }
 
-    public static void CreateNewFlight(Flight newFlight){
+    public static void createNewFlight(Flight newFlight){
         listOfFlights.add(newFlight);
+    }
+
+    public void flightSeatsBooking(int numberOfSeatsBooked){
+        if (getAvaibleSeats() >= numberOfSeatsBooked) {
+            if (getAvaibleSeats() < numberOfSeatsBooked) {
+                System.out.println("Oh sorry! We don't have this amount of tickets available!");
+            }
+            this.availableSeats = availableSeats - numberOfSeatsBooked;
+        }
     }
 }
 
