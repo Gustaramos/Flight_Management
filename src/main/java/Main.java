@@ -1,7 +1,6 @@
 import org.flights.Flight;
 import org.flights.Passenger;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -16,28 +15,34 @@ public class Main {
         String userRole =  inputUser.nextLine();
         if (userRole.contains("1") || userRole.contains("1 - I am a customer!") || userRole.contains("I am a management employee")) {
             System.out.println();
+            Passenger newPassenger = new Passenger();
+            System.out.println();
+            System.out.print("Please, Inform your destination: ");
+            String passengerDestination = inputUser.nextLine();
+            newPassenger.SeatBooking(passengerDestination);
+            inputUser.nextLine();
         }
         if (userRole.contains("2") || userRole.contains("2 - I am a management employee") || userRole.contains("I am a management employee")) {
+            System.out.println("Welcome to Easy Flight Management System!");
+            System.out.println("Please, fill in the information below to register a new flight!" +
+                    "How many flights will be registered? Please enter the total of flights: ");
+            int totalFlightsToRegister = inputUser.nextInt();
+            while (totalFlightsToRegister > 0) {
+                airlineManagement();
 
-            airlineManagement();
+                System.out.println("Do you like to see all flights you have registered?");
+                String seeFlightsRegistered = inputUser.nextLine();
+                if (seeFlightsRegistered.equalsIgnoreCase("yes")) {
+                    System.out.println();
+                    Flight.showFlightsRegistered();
+                }
+                totalFlightsToRegister--;
+            }
         }
-        System.out.println();
-        Passenger newPassenger = new Passenger();
-
-        System.out.print("Please, Inform your destination: ");
-        String passengerDestination = inputUser.nextLine();
-        newPassenger.SeatBooking(passengerDestination);
-        inputUser.nextLine();
     }
 
     public static void airlineManagement () throws InterruptedException {
         Scanner inputUser = new Scanner(System.in);
-        System.out.println("Welcome to Easy Flight Management System!");
-        System.out.println("Please, fill in the information below to register a new flight!" +
-                "How many flights will be registered? Please enter the total of flights: ");
-        int totalFlightsToRegister = inputUser.nextInt();
-
-
 
         System.out.println("Destiny of the flight: ");
         String flightDestiny = inputUser.nextLine();
@@ -72,7 +77,5 @@ public class Main {
             inputUser.nextLine();
             newFlightDestiny.flightsInfos(searchFlightNumber);
         }
-
     }
-
 }

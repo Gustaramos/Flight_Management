@@ -50,7 +50,7 @@ public class Flight{
         return this.totalSeatsOnFlight;
     }
 
-    public int getAvaibleSeats(){
+    public int getAvailableSeats(){
         return this.availableSeats;
     }
 
@@ -60,11 +60,21 @@ public class Flight{
 	    System.out.println("Destiny: " + getDestination());
         System.out.println("Departure: " + getDeparture());
         System.out.println("Total seats on Airplane: " + getTotalSeatsOnFlight());
-        System.out.println("Seats avaiable: " + getAvaibleSeats());
+        System.out.println("Seats avaiable: " + getAvailableSeats());
     }
 
     public ArrayList<Flight> getListOfFlights(){
         return listOfFlights;
+    }
+
+    public static void showFlightsRegistered () {
+        System.out.println("Here are all your registered flights!");
+        for (Flight flight : listOfFlights) {
+            System.out.println("Flight number: " + flight.getFlightNumber()
+                    + "\nFlight destination: " + flight.getDestination() +
+                    "\nFlight origin: " + flight.getOrigin() +
+                    "\nFlight departure: " + flight.getDeparture() + "\n");
+        }
     }
 
     public static void createNewFlight(Flight newFlight){
@@ -72,8 +82,8 @@ public class Flight{
     }
 
     public void flightSeatsBooking(int numberOfSeatsBooked){
-        if (getAvaibleSeats() >= numberOfSeatsBooked) {
-            if (getAvaibleSeats() < numberOfSeatsBooked) {
+        if (getAvailableSeats() >= numberOfSeatsBooked) {
+            if (getAvailableSeats() < numberOfSeatsBooked) {
                 System.out.println("Oh sorry! We don't have this amount of tickets available!");
             }
             this.availableSeats = availableSeats - numberOfSeatsBooked;

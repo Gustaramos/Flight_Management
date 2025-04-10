@@ -1,15 +1,12 @@
 package org.flights;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Handler;
 
 public class Passenger {
     private String name;
     private String cpf;
     private String phoneNumber;
-    Flight flights = new Flight();
+    private Flight flights = new Flight();
 
 
     public Passenger() {
@@ -18,7 +15,7 @@ public class Passenger {
         this.phoneNumber = "";
 
     }
-    //Flight currentFlight
+
     public Passenger(String name, String cpf, String phoneNumber) {
         this.name = name;
         this.cpf = cpf;
@@ -63,5 +60,4 @@ public class Passenger {
 
         }
     }
-
 }
