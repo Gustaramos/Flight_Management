@@ -18,7 +18,6 @@ public class Flight{
         this.destination = "";
         this.departure = "";
         this.totalSeatsOnFlight = 0;
-
     }
 
     public Flight(int flightNumber, String origin, String destination, String departure, int totalSeatsOnFlight){
@@ -54,13 +53,21 @@ public class Flight{
         return this.availableSeats;
     }
 
-    public void flightsInfos(int numberOfFlight){
-	    System.out.println("Flight of number: " + getFlightNumber());
-	    System.out.println("Origin: "+ getOrigin());
-	    System.out.println("Destiny: " + getDestination());
-        System.out.println("Departure: " + getDeparture());
-        System.out.println("Total seats on Airplane: " + getTotalSeatsOnFlight());
-        System.out.println("Seats avaiable: " + getAvailableSeats());
+    public static void flightsInfos(int numberOfFlight){
+        for (Flight flight : listOfFlights) {
+            if (flight.getFlightNumber() == numberOfFlight) {
+                System.out.println("Flight of number: " + flight.getFlightNumber());
+                System.out.println("Origin: "+ flight.getOrigin());
+                System.out.println("Destiny: " + flight.getDestination());
+                System.out.println("Departure: " + flight.getDeparture());
+                System.out.println("Total seats on Airplane: " + flight.getTotalSeatsOnFlight());
+                System.out.println("Seats available: " + flight.getAvailableSeats());
+                System.out.println("----------------------------------------------");
+                break;
+            } else {
+                System.out.println("We have any flight with this number!");
+            }
+        }
     }
 
     public ArrayList<Flight> getListOfFlights(){

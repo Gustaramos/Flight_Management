@@ -26,22 +26,30 @@ public class Main {
             System.out.println("Welcome to Easy Flight Management System!");
             System.out.println("Please, fill in the information below to register a new flight!" +
                     "How many flights will be registered? Please enter the total of flights: ");
-            int totalFlightsToRegister = inputUser.nextInt();
-            while (totalFlightsToRegister > 0) {
-                airlineManagement();
 
-                System.out.println("Do you like to see all flights you have registered?");
-                String seeFlightsRegistered = inputUser.nextLine();
-                if (seeFlightsRegistered.equalsIgnoreCase("yes")) {
-                    System.out.println();
-                    Flight.showFlightsRegistered();
-                }
+            int totalFlightsToRegister = inputUser.nextInt();
+            inputUser.nextLine();
+            while (totalFlightsToRegister > 0) {
+                airlineEmployerManagement();
                 totalFlightsToRegister--;
+            }
+            System.out.println("Would you like to see the flight information? ");
+            String userAnswer = inputUser.nextLine();
+            if (userAnswer.equalsIgnoreCase("yes")) {
+                System.out.println("Please enter the flight number: ");
+                int searchFlightNumber = inputUser.nextInt();
+                inputUser.nextLine();
+                Flight.flightsInfos(searchFlightNumber);
+            }
+            System.out.println("Do you like to see all flights you have registered?");
+            String seeFlightsRegistered = inputUser.nextLine();
+            if (seeFlightsRegistered.equalsIgnoreCase("yes")) {
+                Flight.showFlightsRegistered();
             }
         }
     }
 
-    public static void airlineManagement () throws InterruptedException {
+    public static void airlineEmployerManagement () throws InterruptedException {
         Scanner inputUser = new Scanner(System.in);
 
         System.out.println("Destiny of the flight: ");
@@ -51,7 +59,7 @@ public class Main {
         String flightOrigin = inputUser.nextLine();
 
         System.out.println("Date and time of flight departure (Ex: 25/11/2020 - 12:00): ");
-        String flightDapartureDateTime = inputUser.nextLine();
+        String flightDepartureDateTime = inputUser.nextLine();
 
         System.out.println("Number of the flight: ");
         int flightNumber = inputUser.nextInt();
@@ -60,22 +68,11 @@ public class Main {
         int flightSeats = inputUser.nextInt();
         inputUser.nextLine();
 
-        // flightNumber, origin, destination,  departure,  totalSeatsOnFlight.
-        Flight newFlightDestiny = new Flight(flightNumber, flightOrigin, flightDestiny, flightDapartureDateTime, flightSeats);
+        // flightNumber, origin, destination, departure, totalSeatsOnFlight.
+        Flight newFlightDestiny = new Flight(flightNumber, flightOrigin, flightDestiny, flightDepartureDateTime, flightSeats);
         Flight.createNewFlight(newFlightDestiny);
-        long start = System.currentTimeMillis();
         System.out.println("recording the flight in our system, one second...");
         Thread.sleep(2000);
         System.out.println("Flight successfully registered!");
-
-        System.out.println("Would you like to see the flights information? ");
-        String userAnswer = inputUser.nextLine();
-
-        if (userAnswer.equalsIgnoreCase("yes")) {
-            System.out.println("Please enter the flight number: ");
-            int searchFlightNumber = inputUser.nextInt();
-            inputUser.nextLine();
-            newFlightDestiny.flightsInfos(searchFlightNumber);
-        }
     }
 }
