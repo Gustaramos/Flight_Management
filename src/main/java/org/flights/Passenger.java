@@ -33,7 +33,7 @@ public class Passenger {
         return this.phoneNumber;
     }
 
-    public void SeatBooking() throws InterruptedException {
+    public void seatBooking() throws InterruptedException {
         Flight flight = new Flight();
         Scanner inputUser = new Scanner(System.in);
         System.out.println("Alright! How many tickets do you want to buy?");
