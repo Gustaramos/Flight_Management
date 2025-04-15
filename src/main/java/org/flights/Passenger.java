@@ -1,5 +1,6 @@
 package org.flights;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Passenger {
@@ -8,12 +9,10 @@ public class Passenger {
     private String phoneNumber;
     private Flight flights = new Flight();
 
-
     public Passenger() {
         this.name = "";
         this.cpf = "";
         this.phoneNumber = "";
-
     }
 
     public Passenger(String name, String cpf, String phoneNumber) {
@@ -34,30 +33,32 @@ public class Passenger {
         return this.phoneNumber;
     }
 
-    public void SeatBooking(String flightDestiny) throws InterruptedException {
+    public void SeatBooking() throws InterruptedException {
+        Flight flight = new Flight();
         Scanner inputUser = new Scanner(System.in);
+        System.out.println("Alright! How many tickets do you want to buy?");
+        int numberOfSeatsToBook = inputUser.nextInt();
+        inputUser.nextLine();
+        flight.flightSeatsBooking(numberOfSeatsToBook);
+        System.out.println("Congratulation! Your flight has been booked successfully!");
+
+    }
+
+    //Encapsulating method for verify if a flight exists in the list.
+    public void verifyIfFlightExist(String flightDestiny) throws InterruptedException {
+        boolean found = false;
+
         for (Flight flight : flights.getListOfFlights()) {
-            if (!flights.getListOfFlights().contains(flight)) {
-                System.out.println("Opss... Flight cannot be found!");
-                break;
-            }
-            long start = System.currentTimeMillis();
-            System.out.println("Searching flight...");
-            Thread.sleep(2000);
+            if (Objects.equals(flight.getDestination(), flightDestiny)) {
+                found = true;
+                System.out.println("Searching flight...");
+                Thread.sleep(2000);
+                System.out.println("Nice! We have an flight to: " + flightDestiny);
 
-            System.out.println("Nice! We have an flight to: " + flightDestiny);
-            System.out.println("Do you want to reserve your ticket?");
-            String buyTickets = inputUser.nextLine();
-            if (!buyTickets.equalsIgnoreCase("yes")) {
-                System.out.println("Ok! See you later.");
-                break;
             }
-            System.out.println("Alright! How many tickets do you want to buy?");
-            int numberOfSeatsToBook = inputUser.nextInt();
-            inputUser.nextLine();
-            flight.flightSeatsBooking(numberOfSeatsToBook);
-            System.out.println("Congratulation! Your flight has been booked successfully!");
-
+        }
+        if (!found) {
+            System.out.println("We don't have any flight to " + flightDestiny);
         }
     }
 }

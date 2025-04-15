@@ -9,6 +9,7 @@ public class Flight{
     private String departure;
     private int totalSeatsOnFlight;
     private int availableSeats;
+    private ArrayList<Passenger> listOfPassengersInAirplane = new ArrayList<Passenger>();
     private static ArrayList<Flight> listOfFlights = new ArrayList<Flight>();
 
 
@@ -20,7 +21,12 @@ public class Flight{
         this.totalSeatsOnFlight = 0;
     }
 
-    public Flight(int flightNumber, String origin, String destination, String departure, int totalSeatsOnFlight){
+    public Flight(
+            int flightNumber,
+            String origin,
+            String destination,
+            String departure,
+            int totalSeatsOnFlight){
         this.flightNumber = flightNumber;
         this.origin = origin;
         this.destination = destination;
