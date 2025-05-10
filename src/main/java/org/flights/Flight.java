@@ -9,7 +9,6 @@ public class Flight{
     private String departure;
     private int totalSeatsOnFlight;
     private int availableSeats;
-    private ArrayList<Passenger> listOfPassengersInAirplane = new ArrayList<Passenger>();
     private static ArrayList<Flight> listOfFlights = new ArrayList<Flight>();
 
 

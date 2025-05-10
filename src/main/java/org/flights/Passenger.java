@@ -35,11 +35,12 @@ public class Passenger {
 
     public void seatBooking() throws InterruptedException {
         Flight flight = new Flight();
-        Scanner inputUser = new Scanner(System.in);
-        System.out.println("Alright! How many tickets do you want to buy?");
-        int numberOfSeatsToBook = inputUser.nextInt();
-        inputUser.nextLine();
-        flight.flightSeatsBooking(numberOfSeatsToBook);
+        try (Scanner inputUser = new Scanner(System.in)) {
+            System.out.println("Alright! How many tickets do you want to buy?");
+            int numberOfSeatsToBook = inputUser.nextInt();
+            inputUser.nextLine();
+            flight.flightSeatsBooking(numberOfSeatsToBook);
+        }
         System.out.println("Congratulation! Your flight has been booked successfully!");
 
     }
